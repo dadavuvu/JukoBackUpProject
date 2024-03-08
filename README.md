@@ -1,1 +1,7 @@
-# JukoBackUpProject
+# 쥬코 백업
+### [쥬코 본채널](/channel) | [쥬코 부채널](/channel-sub) | [투고되었던 팬아트](/fanarts)
+- 과거 2023년 활동하셨던 쥬코님의 백업입니다.
+## 팬아트 안내
+- [투고되었던 팬아트](/fanarts)에 들어갈 팬아트를 모집 중입니다.
+- [dagonunso@gmail.com](mailto:dagonunso@gmail.com)으로 팬아트가 담긴 메일을 보내주시되, 제목에 "#팬아트"를 추가하여 보내주시기 바랍니다.
+# **본 프로젝트는 수익을 일절 창출하지 않습니다.**
