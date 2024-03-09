@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쥬코 백업 | 시청</title>
+    <style>
+        video,
+        .container {
+            width: 70%;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            video,
+            .container {
+                width: 100%;
+            }
+        }
+
+        h3,
+        p {
+            margin: 0;
+        }
+    </style>
+    <script>
+        const url = new URL(window.location.href);
+        const urlParams = url.searchParams;
+
+        function timeDifference(current, previous) {
+
+            var msPerMinute = 60 * 1000;
+            var msPerHour = msPerMinute * 60;
+            var msPerDay = msPerHour * 24;
+            var msPerMonth = msPerDay * 30;
+            var msPerYear = msPerDay * 365;
+
+            var elapsed = current - previous;
+
+            if (elapsed < msPerMinute) {
+                return Math.round(elapsed / 1000) + '초 전';
+            }
+
+            else if (elapsed < msPerHour) {
+                return Math.round(elapsed / msPerMinute) + '분 전';
+            }
+
+            else if (elapsed < msPerDay) {
+                return Math.round(elapsed / msPerHour) + '시간 전';
+            }
+
+            else if (elapsed < msPerMonth) {
+                return Math.round(elapsed / msPerDay) + '일 전';
+            }
+
+            else if (elapsed < msPerYear) {
+                return Math.round(elapsed / msPerMonth) + '개월 전';
+            }
+
+            else {
+                return Math.round(elapsed / msPerYear) + '년 전';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            document.getElementById("video").src = `videos/${urlParams.get("v")}.mp4`
+            var f = await fetch(`videos/${urlParams.get("v")}.json`)
+            var json = await f.json()
+            document.getElementById("title").innerHTML = json.name
+            document.getElementById("etc").innerHTML = new Intl.NumberFormat('ko-KR', { notation: 'compact', maximumFractionDigits: 1, }).format(json.view) + "<sup>" + json.view.toLocaleString() + "</sup>∙" + timeDifference(+new Date(), json.uploadedAt) + "<sup>" + new Date(json.uploadedAt).toLocaleDateString("ko-KR", { dateStyle: "full" }) + "</sup>"
+            document.getElementById("description").innerHTML = json.description
+        });
+    </script>
+</head>
+
+<body>
+    <video id="video" controls autoplay></video>
+    <div class="container">
+        <h3 id="title">제목</h3>
+        <p id="etc">기타</p>
+        <hr>
+        <p id="description">설명</p>
+    </div>
+</body>
+
+</html>
